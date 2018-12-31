@@ -14,3 +14,5 @@
  * @author: Abhishek Prakash <prakashabhishek6262@gmail.com>
  *
  */
+
+ require __DIR__ . "/.deployer/init.php";
