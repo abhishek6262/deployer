@@ -1,0 +1,13 @@
+{
+    "name": "abhishek6262/deployer",
+    "description": "This application is responsible for handling the deployment of the PHP applications with ease.",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Abhishek Prakash",
+            "email": "prakashabhishek6262@gmail.com"
+        }
+    ],
+    "require": {}
+}

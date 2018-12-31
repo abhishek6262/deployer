@@ -1,2 +1,2 @@
-# deployed
-A deployer that helps to deploy the PHP Projects with ease.
+# deployer
+This application is responsible for handling the deployment of the PHP applications with ease.
