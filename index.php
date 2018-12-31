@@ -10,9 +10,10 @@
  * into the platform based on the environment and configurations
  * provided or set by the user.
  *
- * @package: The Deployer
  * @author: Abhishek Prakash <prakashabhishek6262@gmail.com>
+ * @package: The Deployer
+ * @version: 0.1
  *
  */
 
- require __DIR__ . "/.deployer/init.php";
+ require __DIR__ . "/app/init.php";
