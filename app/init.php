@@ -8,3 +8,12 @@ namespace App;
  */
 
 require __DIR__ . "/../vendor/autoload.php";
+
+/**
+ * Next, we'll introduce an error handler to log or report the errors
+ * occuring in the application.
+ */
+
+$client = new Adapters\SentryAdapter( new \Raven_Client( config( "SENTRY_DSN" ) ) );
+$errors = new ExceptionHandler( $client );
+$errors->handle();
