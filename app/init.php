@@ -3,9 +3,8 @@
 namespace App;
 
 /**
- * We'll begin by autoloading the application with Composer Protocols to
- * easily manage the loading of files and packages in the entire
- * ecosystem.
+ * We'll begin by autoloading the files of the application with Composer
+ * Protocols to initialize the classes automatically when required.
  */
 
 require __DIR__ . "/../vendor/autoload.php";
