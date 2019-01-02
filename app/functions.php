@@ -1,7 +1,5 @@
 <?php
 
-namespace App;
-
 if (!function_exists("config")) {
     /**
      * Returns the configuration data for the application.

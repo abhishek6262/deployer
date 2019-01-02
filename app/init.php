@@ -1,5 +1,4 @@
 <?php
-
 namespace App;
 // just user buffer in any case
 ob_start();
