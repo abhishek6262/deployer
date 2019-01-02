@@ -13,6 +13,9 @@
     "sentry/sentry": "^1.10",
     "ext-json": "*"
   },
+  "require-dev": {
+    "phpunit/phpunit": "7"
+  },
   "autoload": {
     "files": [
       "app/functions.php"
@@ -21,7 +24,9 @@
       "App\\": "app"
     }
   },
-  "require-dev": {
-    "phpunit/phpunit": "7"
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
   }
 }
