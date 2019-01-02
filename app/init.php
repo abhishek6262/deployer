@@ -1,6 +1,17 @@
 <?php
 
 namespace App;
+// just user buffer in any case
+ob_start();
+
+/**
+ * Firt, We are checking if the composer is installed if not than
+ * We will install it programmatically
+ */
+
+$installer_file = __DIR__.'\installer\composer.sh';
+$output = shell_exec("$installer_file 2>&1");
+echo $output;
 
 /**
  * We'll begin by autoloading the files of the application with Composer
