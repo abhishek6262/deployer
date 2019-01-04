@@ -1,10 +1,10 @@
 <?php
 
 require_once __DIR__ . "/functions.php";
+require_once __DIR__ . "/Exceptions/Contracts/RenderableExceptionInterface.php";
+require_once __DIR__ . "/Exceptions/Contracts/ReportableExceptionInterface.php";
 require_once __DIR__ . "/Exceptions/Exception.php";
 require_once __DIR__ . "/Exceptions/Handler.php";
-require_once __DIR__ . "/Exceptions/RenderableExceptionInterface.php";
-require_once __DIR__ . "/Exceptions/ReportableExceptionInterface.php";
 
 /**
  * First and foremost we'll start off by attaching a Error or Exception
@@ -21,7 +21,7 @@ set_exception_handler([\App\Exceptions\Handler::class, 'handle']);
  * Composer and if we fail then we'll ask the user to install it manually.
  */
 
-if (composer_exists()) {
+if (!composer_exists()) {
     composer_install();
 }
 

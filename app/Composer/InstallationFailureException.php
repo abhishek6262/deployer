@@ -2,8 +2,8 @@
 
 namespace App\Composer;
 
+use App\Exceptions\Contracts\RenderableExceptionInterface;
 use App\Exceptions\Exception;
-use App\Exceptions\RenderableExceptionInterface;
 
 /**
  * Class InstallationFailureException

@@ -2,6 +2,9 @@
 
 namespace App\Exceptions;
 
+use App\Exceptions\Contracts\RenderableExceptionInterface;
+use App\Exceptions\Contracts\ReportableExceptionInterface;
+
 /**
  * Class Handler
  * @package App\Exceptions
