@@ -25,7 +25,7 @@ if (!function_exists("composer_exists")) {
      */
     function composer_exists(): bool
     {
-        exec('Composer -v', $result, $exit_code);
+        exec('composer -v', $result, $exit_code);
 
         return (int)$exit_code === 0 ? true : false;
     }
