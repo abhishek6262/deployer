@@ -9,4 +9,4 @@ os:
   - windows
 
 before_script:
-  - Composer install --no-interaction
+  - composer install --no-interaction
