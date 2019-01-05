@@ -1,0 +1,9 @@
+{
+  "DB_CONNECTION": "mysql",
+  "DB_HOST": "127.0.0.1",
+  "DB_PORT": 3306,
+  "DB_DATABASE": "project",
+  "DB_USERNAME": "root",
+  "DB_PASSWORD": "",
+  "SENTRY_DSN": "https://94e2d24b28b24c43a65248db7455e2f9@sentry.io/1362504"
+}

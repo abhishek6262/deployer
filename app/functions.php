@@ -1,0 +1,71 @@
+<?php
+
+if (!function_exists("config")) {
+    /**
+     * Returns the configuration data for the application.
+     *
+     * @param  string $key
+     *
+     * @return string|null
+     */
+    function config($key): ?string
+    {
+        $str = file_get_contents(__DIR__ . '/../config.json');
+        $data = json_decode($str, true);
+
+        return array_key_exists($key, $data) ? $data[$key] : null;
+    }
+}
+
+if (!function_exists("composer_exists")) {
+    /**
+     * Determines whether Composer is installed in the environment.
+     *
+     * @return bool
+     */
+    function composer_exists(): bool
+    {
+        exec('composer -v', $result, $exit_code);
+
+        return (int)$exit_code === 0 ? true : false;
+    }
+}
+
+if (!function_exists("composer_install")) {
+    /**
+     * Performs an installation of Composer in the environment.
+     *
+     * @return void
+     *
+     * @throws \App\Composer\InstallationFailureException
+     */
+    function composer_install(): void
+    {
+        if (is_windows()) {
+            require_once __DIR__ . "/Composer/InstallationFailureException.php";
+
+            throw new \App\Composer\InstallationFailureException("Failed To Install Composer.");
+        }
+
+        $installer = require_once __DIR__ . "/Composer/installer.sh";
+
+        shell_exec($installer);
+    }
+}
+
+if (!function_exists("is_windows")) {
+    /**
+     * Determines whether the environment on which the application running
+     * is Windows.
+     *
+     * @return bool
+     */
+    function is_windows(): bool
+    {
+        if (strpos(strtoupper(PHP_OS), "WIN") !== false) {
+            return true;
+        }
+
+        return false;
+    }
+}
