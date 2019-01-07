@@ -31,3 +31,13 @@ if (!composer_exists()) {
  */
 
 require_once __DIR__ . "/../vendor/autoload.php";
+
+/**
+ * Now when the application has been booted so it is the perfect time to
+ * check whether the application requires Node Modules and if yes then we
+ * should prepare the environment for it.
+ */
+
+if (npm_required() && !npm_exists()) {
+    npm_install();
+}

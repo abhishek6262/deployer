@@ -69,3 +69,54 @@ if (!function_exists("is_windows")) {
         return false;
     }
 }
+
+if (!function_exists("npm_exists")) {
+    /**
+     * Determines whether NPM is installed in the environment.
+     *
+     * @return bool
+     */
+    function npm_exists(): bool
+    {
+        exec('npm -v', $result, $exit_code);
+
+        return (int)$exit_code === 0 ? true : false;
+    }
+}
+
+if (!function_exists("npm_install")) {
+    /**
+     * Performs an installation of Node JS and NPM in the environment.
+     *
+     * @return void
+     *
+     * @throws \App\NPM\InstallationFailureException
+     */
+    function npm_install(): void
+    {
+        if (is_windows()) {
+            throw new \App\NPM\InstallationFailureException("Failed To Install NPM.");
+        }
+
+        // 
+    }
+}
+
+if (!function_exists("npm_required")) {
+    /**
+     * Determines whether the source application requires the Node Modules
+     * to be installed.
+     *
+     * @return bool
+     */
+    function npm_required(): bool
+    {
+        $path = __DIR__ . "/src/package.json";
+
+        if (file_exists($path)) {
+            return true;
+        }
+
+        return false;
+    }
+}
