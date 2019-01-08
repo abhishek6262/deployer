@@ -120,21 +120,21 @@ if (!function_exists("is_windows")) {
 
 if (!function_exists("npm_exists")) {
     /**
-     * Determines whether NPM is installed in the environment.
+     * Determines whether NPM (Node Package Manager) is installed in the
+     * environment.
      *
      * @return bool
      */
     function npm_exists(): bool
     {
-        exec('npm -v', $result, $exit_code);
-
-        return (int)$exit_code === 0 ? true : false;
+        return \App\NPM\NPM::exists();
     }
 }
 
 if (!function_exists("npm_install")) {
     /**
-     * Performs an installation of Node JS and NPM in the environment.
+     * Performs an installation of NPM (Node Package Manager) in the
+     * environment.
      *
      * @return void
      *
@@ -142,32 +142,29 @@ if (!function_exists("npm_install")) {
      */
     function npm_install(): void
     {
-        if (is_windows()) {
-            throw new \App\NPM\InstallationFailureException("Failed To Install NPM.");
-        }
-
-        // 
+        \App\NPM\NPM::install();
     }
 }
 
 if (!function_exists("npm_packages_exists")) {
     /**
-     * Determines whether the NPM packages has been installed in the
-     * supplied directory.
+     * Determines whether the application requires the Node packages
+     * to be installed.
      *
      * @param  string $directory
      *
      * @return bool
      */
-    function npm_packages_exists(string $directory = __SRC_DIRECTORY__): bool
+    function npm_packages_exists(string $directory = __ROOT_DIRECTORY__): bool
     {
-        return file_exists($directory . "/node_modules/") ? true : false;
+        return \App\NPM\NPM::packagesExists($directory);
     }
 }
 
 if (!function_exists("npm_packages_install")) {
     /**
-     * Performs an installation of NPM packages in the supplied directory.
+     * Performs an installation of Node packages in the supplied
+     * directory.
      *
      * @param  string $directory
      *
@@ -175,43 +172,34 @@ if (!function_exists("npm_packages_install")) {
      */
     function npm_packages_install(string $directory = __SRC_DIRECTORY__): void
     {
-        $CURRENT_WORKING_DIRECTORY = getcwd();
-
-        chdir($directory);
-
-        $MAX_EXECUTION_TIME = 1800; // "30 Mins" for slow internet connections.
-
-        set_time_limit($MAX_EXECUTION_TIME);
-        shell_exec("npm install");
-
-        chdir($CURRENT_WORKING_DIRECTORY);
+        \App\NPM\NPM::installPackages($directory);
     }
 }
 
-if (!function_exists("npm_packages_required")) {
+if (!function_exists("npm_packages_installed")) {
     /**
-     * Determines whether the application requires the Node Modules
-     * to be installed.
+     * Determines whether the Node packages has been installed in the
+     * supplied directory.
      *
      * @param  string $directory
      *
      * @return bool
      */
-    function npm_packages_required(string $directory = __ROOT_DIRECTORY__): bool
+    function npm_packages_installed(string $directory = __SRC_DIRECTORY__): bool
     {
-        return file_exists($directory . "/package.json") ? true : false;
+        return \App\NPM\NPM::packagesInstalled($directory);
     }
 }
 
 if (!function_exists("npm_required")) {
     /**
      * Determines whether the application requires the NPM
-     * (Node Package Manager) to be installed
+     * (Node Package Manager) to be installed.
      *
      * @return bool
      */
     function npm_required(): bool
     {
-        return (npm_packages_required() || npm_packages_required(__SRC_DIRECTORY__));
+        return (npm_packages_exists() || npm_packages_exists(__SRC_DIRECTORY__));
     }
 }

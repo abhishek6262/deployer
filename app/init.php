@@ -19,7 +19,7 @@ set_exception_handler([\App\Exceptions\Handler::class, 'handle']);
  * Next, we'll proceed by checking if the Composer exists in the
  * environment since our complete application is based on Composer so
  * it is necessary to have Composer installed. We'll try installing
- * Composer and all its pacakages and we fail then we'll ask the user to
+ * Composer and all its packages and we fail then we'll ask the user to
  * install it manually.
  */
 
@@ -52,10 +52,10 @@ if (npm_required() && !npm_exists()) {
     npm_install();
 }
 
-if (npm_packages_required() && !npm_packages_exists()) {
+if (npm_packages_exists() && !npm_packages_installed()) {
     npm_packages_install();
 }
 
-if (npm_packages_required(__SRC_DIRECTORY__) && !npm_packages_exists(__SRC_DIRECTORY__)) {
+if (npm_packages_exists(__SRC_DIRECTORY__) && !npm_packages_installed(__SRC_DIRECTORY__)) {
     npm_packages_install(__SRC_DIRECTORY__);
 }
