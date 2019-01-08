@@ -18,11 +18,16 @@ set_exception_handler([\App\Exceptions\Handler::class, 'handle']);
  * Next, we'll proceed by checking if the Composer exists in the
  * environment since our complete application is based on Composer so
  * it is necessary to have Composer installed. We'll try installing
- * Composer and if we fail then we'll ask the user to install it manually.
+ * Composer and all its pacakages and we fail then we'll ask the user to
+ * install it manually.
  */
 
 if (!composer_exists()) {
     composer_install();
+}
+
+if (!composer_packages_exists()) {
+    composer_packages_install();
 }
 
 /**

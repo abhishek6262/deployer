@@ -53,6 +53,41 @@ if (!function_exists("composer_install")) {
     }
 }
 
+if (!function_exists("composer_packages_exists")) {
+    /**
+     * Determines whether the Composer packages has been installed in the
+     * supplied directory.
+     *
+     * @param  string $directory
+     *
+     * @return bool
+     */
+    function composer_packages_exists($directory = __ROOT_DIRECTORY__): bool
+    {
+        return file_exists($directory . "/vendor/") ? true : false;
+    }
+}
+
+if (!function_exists("composer_packages_install")) {
+    /**
+     * Performs an installation of Composer packages in the supplied
+     * directory.
+     *
+     * @param  string $directory
+     *
+     * @return void
+     */
+    function composer_packages_install($directory = __ROOT_DIRECTORY__): void
+    {
+        chdir($directory);
+
+        $MAX_EXECUTION_TIME = 1800; // "30 Mins" for slow internet connections.
+
+        set_time_limit($MAX_EXECUTION_TIME);
+        shell_exec("composer install");
+    }
+}
+
 if (!function_exists("is_windows")) {
     /**
      * Determines whether the environment on which the application running
