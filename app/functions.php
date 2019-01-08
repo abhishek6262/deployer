@@ -10,7 +10,7 @@ if (!function_exists("config")) {
      */
     function config($key): ?string
     {
-        $str = file_get_contents(__DIR__ . '/../config.json');
+        $str = file_get_contents(__ROOT_DIRECTORY__ . '/config.json');
         $data = json_decode($str, true);
 
         return array_key_exists($key, $data) ? $data[$key] : null;
@@ -42,12 +42,12 @@ if (!function_exists("composer_install")) {
     function composer_install(): void
     {
         if (is_windows()) {
-            require_once __DIR__ . "/Composer/InstallationFailureException.php";
+            require_once __APP_DIRECTORY__ . "/Composer/InstallationFailureException.php";
 
             throw new \App\Composer\InstallationFailureException("Failed To Install Composer.");
         }
 
-        $installer = require_once __DIR__ . "/Composer/installer.sh";
+        $installer = require_once __APP_DIRECTORY__ . "/Composer/installer.sh";
 
         shell_exec($installer);
     }
@@ -111,7 +111,7 @@ if (!function_exists("npm_required")) {
      */
     function npm_required(): bool
     {
-        $path = __DIR__ . "/src/package.json";
+        $path = __SRC_DIRECTORY__ . "/package.json";
 
         if (file_exists($path)) {
             return true;

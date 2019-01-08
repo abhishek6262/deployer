@@ -1,10 +1,10 @@
 <?php
 
-require_once __DIR__ . "/functions.php";
-require_once __DIR__ . "/Exceptions/Contracts/RenderableExceptionInterface.php";
-require_once __DIR__ . "/Exceptions/Contracts/ReportableExceptionInterface.php";
-require_once __DIR__ . "/Exceptions/Exception.php";
-require_once __DIR__ . "/Exceptions/Handler.php";
+require_once __APP_DIRECTORY__ . "/functions.php";
+require_once __APP_DIRECTORY__ . "/Exceptions/Contracts/RenderableExceptionInterface.php";
+require_once __APP_DIRECTORY__ . "/Exceptions/Contracts/ReportableExceptionInterface.php";
+require_once __APP_DIRECTORY__ . "/Exceptions/Exception.php";
+require_once __APP_DIRECTORY__ . "/Exceptions/Handler.php";
 
 /**
  * First and foremost we'll start off by attaching a Error or Exception
@@ -30,7 +30,7 @@ if (!composer_exists()) {
  * our application.
  */
 
-require_once __DIR__ . "/../vendor/autoload.php";
+require_once __ROOT_DIRECTORY__ . "/vendor/autoload.php";
 
 /**
  * Now when the application has been booted so it is the perfect time to
