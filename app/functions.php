@@ -88,6 +88,21 @@ if (!function_exists("composer_packages_install")) {
     }
 }
 
+if (!function_exists("composer_packages_required")) {
+    /**
+     * Determines whether the application requires the Composer packages
+     * to be installed.
+     *
+     * @param  string $directory
+     *
+     * @return bool
+     */
+    function composer_packages_required($directory = __ROOT_DIRECTORY__): bool
+    {
+        return file_exists($directory . "/composer.json") ? true : false;
+    }
+}
+
 if (!function_exists("is_windows")) {
     /**
      * Determines whether the environment on which the application running
@@ -137,21 +152,51 @@ if (!function_exists("npm_install")) {
     }
 }
 
-if (!function_exists("npm_required")) {
+if (!function_exists("npm_packages_exists")) {
     /**
-     * Determines whether the source application requires the Node Modules
-     * to be installed.
+     * Determines whether the NPM packages has been installed in the
+     * supplied directory.
+     *
+     * @param  string $directory
      *
      * @return bool
      */
-    function npm_required(): bool
+    function npm_packages_exists($directory = __SRC_DIRECTORY__): bool
     {
-        $path = __SRC_DIRECTORY__ . "/package.json";
+        return file_exists($directory . "/node_modules/") ? true : false;
+    }
+}
 
-        if (file_exists($path)) {
-            return true;
-        }
+if (!function_exists("npm_packages_install")) {
+    /**
+     * Performs an installation of NPM packages in the supplied directory.
+     *
+     * @param  string $directory
+     *
+     * @return void
+     */
+    function npm_packages_install($directory = __SRC_DIRECTORY__): void
+    {
+        chdir($directory);
 
-        return false;
+        $MAX_EXECUTION_TIME = 1800; // "30 Mins" for slow internet connections.
+
+        set_time_limit($MAX_EXECUTION_TIME);
+        shell_exec("npm install");
+    }
+}
+
+if (!function_exists("npm_packages_required")) {
+    /**
+     * Determines whether the application requires the Node Modules
+     * to be installed.
+     *
+     * @param  string $directory
+     *
+     * @return bool
+     */
+    function npm_packages_required($directory = __ROOT_DIRECTORY__): bool
+    {
+        return file_exists($directory . "/package.json") ? true : false;
     }
 }
