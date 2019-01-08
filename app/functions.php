@@ -170,7 +170,7 @@ if (!function_exists("npm_packages_install")) {
      *
      * @return void
      */
-    function npm_packages_install(string $directory = __SRC_DIRECTORY__): void
+    function npm_packages_install(string $directory = __ROOT_DIRECTORY__): void
     {
         \App\NPM\NPM::installPackages($directory);
     }
@@ -185,7 +185,7 @@ if (!function_exists("npm_packages_installed")) {
      *
      * @return bool
      */
-    function npm_packages_installed(string $directory = __SRC_DIRECTORY__): bool
+    function npm_packages_installed(string $directory = __ROOT_DIRECTORY__): bool
     {
         return \App\NPM\NPM::packagesInstalled($directory);
     }
