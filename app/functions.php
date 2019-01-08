@@ -8,7 +8,7 @@ if (!function_exists("config")) {
      *
      * @return string|null
      */
-    function config($key): ?string
+    function config(string $key): ?string
     {
         $str = file_get_contents(__ROOT_DIRECTORY__ . '/config.json');
         $data = json_decode($str, true);
@@ -25,9 +25,7 @@ if (!function_exists("composer_exists")) {
      */
     function composer_exists(): bool
     {
-        exec('composer -v', $result, $exit_code);
-
-        return (int)$exit_code === 0 ? true : false;
+        return \App\Composer\Composer::exists();
     }
 }
 
@@ -41,30 +39,22 @@ if (!function_exists("composer_install")) {
      */
     function composer_install(): void
     {
-        if (is_windows()) {
-            require_once __APP_DIRECTORY__ . "/Composer/InstallationFailureException.php";
-
-            throw new \App\Composer\InstallationFailureException("Failed To Install Composer.");
-        }
-
-        $installer = require_once __APP_DIRECTORY__ . "/Composer/installer.sh";
-
-        shell_exec($installer);
+        \App\Composer\Composer::install();
     }
 }
 
 if (!function_exists("composer_packages_exists")) {
     /**
-     * Determines whether the Composer packages has been installed in the
-     * supplied directory.
+     * Determines whether the application requires the Composer packages
+     * to be installed.
      *
      * @param  string $directory
      *
      * @return bool
      */
-    function composer_packages_exists($directory = __ROOT_DIRECTORY__): bool
+    function composer_packages_exists(string $directory = __ROOT_DIRECTORY__): bool
     {
-        return file_exists($directory . "/vendor/") ? true : false;
+        return \App\Composer\Composer::packagesExists($directory);
     }
 }
 
@@ -77,33 +67,24 @@ if (!function_exists("composer_packages_install")) {
      *
      * @return void
      */
-    function composer_packages_install($directory = __ROOT_DIRECTORY__): void
+    function composer_packages_install(string $directory = __ROOT_DIRECTORY__): void
     {
-        $CURRENT_WORKING_DIRECTORY = getcwd();
-
-        chdir($directory);
-
-        $MAX_EXECUTION_TIME = 1800; // "30 Mins" for slow internet connections.
-
-        set_time_limit($MAX_EXECUTION_TIME);
-        shell_exec("composer install");
-
-        chdir($CURRENT_WORKING_DIRECTORY);
+        \App\Composer\Composer::installPackages($directory);
     }
 }
 
-if (!function_exists("composer_packages_required")) {
+if (!function_exists("composer_packages_installed")) {
     /**
-     * Determines whether the application requires the Composer packages
-     * to be installed.
+     * Determines whether the Composer packages has been installed in the
+     * supplied directory.
      *
      * @param  string $directory
      *
      * @return bool
      */
-    function composer_packages_required($directory = __ROOT_DIRECTORY__): bool
+    function composer_packages_installed(string $directory = __ROOT_DIRECTORY__): bool
     {
-        return file_exists($directory . "/composer.json") ? true : false;
+        return \App\Composer\Composer::packagesInstalled($directory);
     }
 }
 
@@ -116,7 +97,7 @@ if (!function_exists("composer_required")) {
      */
     function composer_required(): bool
     {
-        return (composer_packages_required() || composer_packages_required(__SRC_DIRECTORY__));
+        return (composer_packages_exists() || composer_packages_exists(__SRC_DIRECTORY__));
     }
 }
 
@@ -178,7 +159,7 @@ if (!function_exists("npm_packages_exists")) {
      *
      * @return bool
      */
-    function npm_packages_exists($directory = __SRC_DIRECTORY__): bool
+    function npm_packages_exists(string $directory = __SRC_DIRECTORY__): bool
     {
         return file_exists($directory . "/node_modules/") ? true : false;
     }
@@ -192,7 +173,7 @@ if (!function_exists("npm_packages_install")) {
      *
      * @return void
      */
-    function npm_packages_install($directory = __SRC_DIRECTORY__): void
+    function npm_packages_install(string $directory = __SRC_DIRECTORY__): void
     {
         $CURRENT_WORKING_DIRECTORY = getcwd();
 
@@ -216,7 +197,7 @@ if (!function_exists("npm_packages_required")) {
      *
      * @return bool
      */
-    function npm_packages_required($directory = __ROOT_DIRECTORY__): bool
+    function npm_packages_required(string $directory = __ROOT_DIRECTORY__): bool
     {
         return file_exists($directory . "/package.json") ? true : false;
     }
@@ -225,9 +206,7 @@ if (!function_exists("npm_packages_required")) {
 if (!function_exists("npm_required")) {
     /**
      * Determines whether the application requires the NPM
-     * (Node Package Manager) to be installed.
-     *
-     * @param  string $directory
+     * (Node Package Manager) to be installed
      *
      * @return bool
      */

@@ -1,6 +1,7 @@
 <?php
 
 require_once __APP_DIRECTORY__ . "/functions.php";
+require_once __APP_DIRECTORY__ . "/Composer/Composer.php";
 require_once __APP_DIRECTORY__ . "/Exceptions/Contracts/RenderableExceptionInterface.php";
 require_once __APP_DIRECTORY__ . "/Exceptions/Contracts/ReportableExceptionInterface.php";
 require_once __APP_DIRECTORY__ . "/Exceptions/Exception.php";
@@ -26,11 +27,11 @@ if (composer_required() && !composer_exists()) {
     composer_install();
 }
 
-if (composer_packages_required() && !composer_packages_exists()) {
+if (composer_packages_exists() && !composer_packages_installed()) {
     composer_packages_install();
 }
 
-if (composer_packages_required(__SRC_DIRECTORY__) && !composer_packages_exists(__SRC_DIRECTORY__)) {
+if (composer_packages_exists(__SRC_DIRECTORY__) && !composer_packages_installed(__SRC_DIRECTORY__)) {
     composer_packages_install(__SRC_DIRECTORY__);
 }
 
