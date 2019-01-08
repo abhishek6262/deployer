@@ -22,7 +22,7 @@ set_exception_handler([\App\Exceptions\Handler::class, 'handle']);
  * install it manually.
  */
 
-if (!composer_exists() && (composer_packages_required() || composer_packages_required(__SRC_DIRECTORY__))) {
+if (composer_required() && !composer_exists()) {
     composer_install();
 }
 
@@ -47,7 +47,7 @@ require_once __ROOT_DIRECTORY__ . "/vendor/autoload.php";
  * should prepare the environment for it.
  */
 
-if (!npm_exists() && (npm_packages_required() || npm_packages_required(__SRC_DIRECTORY__))) {
+if (npm_required() && !npm_exists()) {
     npm_install();
 }
 

@@ -79,12 +79,16 @@ if (!function_exists("composer_packages_install")) {
      */
     function composer_packages_install($directory = __ROOT_DIRECTORY__): void
     {
+        $CURRENT_WORKING_DIRECTORY = getcwd();
+
         chdir($directory);
 
         $MAX_EXECUTION_TIME = 1800; // "30 Mins" for slow internet connections.
 
         set_time_limit($MAX_EXECUTION_TIME);
         shell_exec("composer install");
+
+        chdir($CURRENT_WORKING_DIRECTORY);
     }
 }
 
@@ -100,6 +104,19 @@ if (!function_exists("composer_packages_required")) {
     function composer_packages_required($directory = __ROOT_DIRECTORY__): bool
     {
         return file_exists($directory . "/composer.json") ? true : false;
+    }
+}
+
+if (!function_exists("composer_required")) {
+    /**
+     * Determines whether the application requires the Composer to be
+     * installed.
+     *
+     * @return bool
+     */
+    function composer_required(): bool
+    {
+        return (composer_packages_required() || composer_packages_required(__SRC_DIRECTORY__));
     }
 }
 
@@ -177,12 +194,16 @@ if (!function_exists("npm_packages_install")) {
      */
     function npm_packages_install($directory = __SRC_DIRECTORY__): void
     {
+        $CURRENT_WORKING_DIRECTORY = getcwd();
+
         chdir($directory);
 
         $MAX_EXECUTION_TIME = 1800; // "30 Mins" for slow internet connections.
 
         set_time_limit($MAX_EXECUTION_TIME);
         shell_exec("npm install");
+
+        chdir($CURRENT_WORKING_DIRECTORY);
     }
 }
 
@@ -198,5 +219,20 @@ if (!function_exists("npm_packages_required")) {
     function npm_packages_required($directory = __ROOT_DIRECTORY__): bool
     {
         return file_exists($directory . "/package.json") ? true : false;
+    }
+}
+
+if (!function_exists("npm_required")) {
+    /**
+     * Determines whether the application requires the NPM
+     * (Node Package Manager) to be installed.
+     *
+     * @param  string $directory
+     *
+     * @return bool
+     */
+    function npm_required(): bool
+    {
+        return (npm_packages_required() || npm_packages_required(__SRC_DIRECTORY__));
     }
 }
