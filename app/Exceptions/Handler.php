@@ -19,6 +19,26 @@ class Handler
     private static $reporter = null;
 
     /**
+     * Returns an instance of Reporter to report the exception.
+     *
+     * @return SentryReporterAdapter|ReporterInterface|null
+     *
+     * @throws \Raven_Exception
+     */
+    public static function getReporter()
+    {
+        if (empty(self::$reporter) && class_exists('Raven_Client')) {
+            $client = new \Raven_Client(config("SENTRY_DSN"));
+
+            self::$reporter = new SentryReporterAdapter(
+                $client->install()
+            );
+        }
+
+        return self::$reporter;
+    }
+
+    /**
      * Handles the generated exception and prepares a response based on
      * its type.
      *
@@ -35,15 +55,13 @@ class Handler
         }
 
         if ($exception instanceof ReportableExceptionInterface) {
-            if (empty(self::$reporter)) {
-                $client = new \Raven_Client(config("SENTRY_DSN"));
+            $exception->setReporter(self::getReporter())->report();
+        } else {
+            $reporter = self::getReporter();
 
-                self::$reporter = new SentryReporterAdapter(
-                    $client->install()
-                );
+            if (!empty($reporter)) {
+                $reporter->report($exception);
             }
-
-            $exception->setReporter(self::$reporter)->report();
         }
     }
 }
