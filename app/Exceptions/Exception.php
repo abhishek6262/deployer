@@ -2,12 +2,19 @@
 
 namespace App\Exceptions;
 
+use App\Contracts\ReporterInterface;
+
 /**
  * Class Exception
  * @package App\Exceptions
  */
 class Exception extends \Exception
 {
+    /**
+     * @var ReporterInterface
+     */
+    private $reporter;
+
     /**
      * Generates a nice looking template for the thrown exception.
      *
@@ -24,8 +31,22 @@ class Exception extends \Exception
      *
      * @return void
      */
-    public function report()
+    public function report(): void
     {
-        //
+        $this->reporter->report($this);
+    }
+
+    /**
+     * Set the reporter to log the exception thrown in the application.
+     *
+     * @param  ReporterInterface $reporter
+     *
+     * @return $this
+     */
+    public function setReporter(ReporterInterface $reporter): self
+    {
+        $this->reporter = $reporter;
+
+        return $this;
     }
 }
