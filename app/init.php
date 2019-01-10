@@ -52,10 +52,12 @@ if (npm_required() && !npm_exists()) {
     npm_install();
 }
 
-if (npm_packages_exists() && !npm_packages_installed()) {
-    npm_packages_install();
-}
+echo (int) npm_exists();
 
-if (npm_packages_exists(__SRC_DIRECTORY__) && !npm_packages_installed(__SRC_DIRECTORY__)) {
-    npm_packages_install(__SRC_DIRECTORY__);
-}
+// if (npm_packages_exists() && !npm_packages_installed()) {
+//     npm_packages_install();
+// }
+
+// if (npm_packages_exists(__SRC_DIRECTORY__) && !npm_packages_installed(__SRC_DIRECTORY__)) {
+//     npm_packages_install(__SRC_DIRECTORY__);
+// }
