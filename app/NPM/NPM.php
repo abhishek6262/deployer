@@ -35,23 +35,12 @@ class NPM
             throw new InstallationFailureException("Failed To Install NPM.");
         }
 
-        shell_exec('touch ~/.bash_profile');
-        shell_exec('curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash');
+        $installer = require_once "installer.sh";
 
-        shell_exec('export NVM_DIR="$HOME/.nvm"');
-        exec("export -p", $result, $code);
+        exec("bash " . $installer, $result, $code);
 
-        echo "<pre>";
         print_r($result);
-        echo "</pre>";
-
-        echo $code;
-
-//        shell_exec('[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"');
-//        shell_exec('[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"');
-//
-//        shell_exec('nvm install node');
-//        shell_exec('nvm use node');
+        printf("%d", $code);
     }
 
     /**
