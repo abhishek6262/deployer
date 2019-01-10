@@ -35,6 +35,7 @@ class NPM
             throw new InstallationFailureException("Failed To Install NPM.");
         }
 
+        echo "<pre>";
         exec('touch ~/.bash_profile', $result);
         print_r($result);
 
@@ -55,6 +56,7 @@ class NPM
 
         exec('nvm use node', $result);
         print_r($result);
+        echo "</pre>";
     }
 
     /**
