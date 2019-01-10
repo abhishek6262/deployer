@@ -42,7 +42,6 @@ class NPM
         shell_exec($installer);
 
         exec('npm --version', $result, $code);
-
         print_r($result);
         echo $code;
     }
