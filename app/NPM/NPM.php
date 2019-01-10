@@ -38,10 +38,6 @@ class NPM
         shell_exec('touch ~/.bash_profile');
         shell_exec('curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash');
 
-        $installer = require_once "installer.sh";
-
-        shell_exec($installer);
-
         exec('npm --version', $result, $code);
         print_r($result);
         echo $code;
