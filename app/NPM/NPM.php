@@ -38,7 +38,7 @@ class NPM
         shell_exec('touch ~/.bash_profile');
         shell_exec('curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash');
 
-        exec('echo $HOME/.nvm', $result, $exit_code);
+        exec('$HOME/.nvm', $result, $exit_code);
         $NVM_DIR = $result[0];
 
         shell_exec('[ -s "' . $NVM_DIR . '/nvm.sh" ] && \. "' . $NVM_DIR . '/nvm.sh"');
@@ -47,10 +47,9 @@ class NPM
         shell_exec('nvm install node');
         shell_exec('nvm use node');
 
-        exec("npm --version", $result, $exit_code);
+        $output = shell_exec("npm --version");
 
-        print_r($result);
-        printf("%d", $exit_code);
+        print_r($output);
     }
 
     /**
