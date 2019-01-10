@@ -52,8 +52,6 @@ require_once __ROOT_DIRECTORY__ . "/vendor/autoload.php";
     npm_install();
 // }
 
-printf("%d", (int) npm_exists());
-
 // if (npm_packages_exists() && !npm_packages_installed()) {
 //     npm_packages_install();
 // }
