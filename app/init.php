@@ -48,11 +48,11 @@ require_once __ROOT_DIRECTORY__ . "/vendor/autoload.php";
  * should prepare the environment for it.
  */
 
-if (npm_required() && !npm_exists()) {
+// if (npm_required() && !npm_exists()) {
     npm_install();
-}
+// }
 
-echo (int) npm_exists();
+printf("%d", (int) npm_exists());
 
 // if (npm_packages_exists() && !npm_packages_installed()) {
 //     npm_packages_install();
