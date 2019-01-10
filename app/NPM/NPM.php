@@ -35,14 +35,9 @@ class NPM
             throw new InstallationFailureException("Failed To Install NPM.");
         }
 
-        exec('touch ~/.bash_profile', $result, $exit_code);
-        echo $exit_code . PHP_EOL;
-
-        exec('curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash', $result, $exit_code);
-        echo $exit_code . PHP_EOL;
-
-        exec('export NVM_DIR="$HOME/.nvm"', $result, $exit_code);
-        echo $exit_code . PHP_EOL;
+        shell_exec('touch ~/.bash_profile');
+        shell_exec('curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash');
+        shell_exec('export NVM_DIR="$HOME/.nvm"');
 
         exec('[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"', $result, $exit_code);
         echo $exit_code . PHP_EOL;
