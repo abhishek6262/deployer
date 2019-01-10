@@ -8,4 +8,4 @@ export NVM_DIR="$HOME/.nvm"
 nvm install node
 nvm use node
 
-echo node --version
+node --version

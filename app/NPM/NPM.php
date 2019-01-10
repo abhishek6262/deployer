@@ -35,12 +35,12 @@ class NPM
             throw new InstallationFailureException("Failed To Install NPM.");
         }
 
-        $installer = require_once "installer.sh";
+        exec("sh installer.sh", $result, $code);
 
-        exec("bash " . $installer, $result, $code);
-
+        echo "<pre>";
         print_r($result);
-        printf("%d", $code);
+        echo "</pre>";
+        echo $code;
     }
 
     /**
