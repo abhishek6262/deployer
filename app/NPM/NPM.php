@@ -45,7 +45,7 @@ class NPM
         shell_exec('nvm install node');
         shell_exec('nvm use node');
 
-        exec('npm -v', $result, $exit_code);
+        exec('npm --version', $result, $exit_code);
         
         echo "<pre>";
         print_r($result);
