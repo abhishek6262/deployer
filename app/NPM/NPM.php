@@ -35,26 +35,19 @@ class NPM
             throw new InstallationFailureException("Failed To Install NPM.");
         }
 
+        shell_exec('touch ~/.bash_profile');
+
+        shell_exec('curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash');
+        shell_exec('export NVM_DIR="$HOME/.nvm"');
+        shell_exec('[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"');
+        shell_exec('[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"');
+
+        shell_exec('nvm install node');
+        shell_exec('nvm use node');
+
+        exec('npm -v', $result, $exit_code);
+        
         echo "<pre>";
-        exec('touch ~/.bash_profile', $result);
-        print_r($result);
-
-        exec('curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash', $result);
-        print_r($result);
-
-        exec('export NVM_DIR="$HOME/.nvm"', $result);
-        print_r($result);
-
-        exec('[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"', $result);
-        print_r($result);
-
-        exec('[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"', $result);
-        print_r($result);
-
-        exec('nvm install node', $result);
-        print_r($result);
-
-        exec('nvm use node', $result);
         print_r($result);
         echo "</pre>";
     }
