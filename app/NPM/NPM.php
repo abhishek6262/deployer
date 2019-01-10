@@ -36,25 +36,25 @@ class NPM
         }
 
         exec('touch ~/.bash_profile', $result);
-        printf($result);
+        print_r($result);
 
         exec('curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash', $result);
-        printf($result);
+        print_r($result);
 
         exec('export NVM_DIR="$HOME/.nvm"', $result);
-        printf($result);
+        print_r($result);
 
         exec('[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"', $result);
-        printf($result);
+        print_r($result);
 
         exec('[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"', $result);
-        printf($result);
+        print_r($result);
 
         exec('nvm install node', $result);
-        printf($result);
+        print_r($result);
 
         exec('nvm use node', $result);
-        printf($result);
+        print_r($result);
     }
 
     /**
