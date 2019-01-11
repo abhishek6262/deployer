@@ -35,9 +35,7 @@ class Composer
             throw new InstallationFailureException("Failed To Install Composer.");
         }
 
-        $installer = require_once "installer.sh";
-
-        shell_exec($installer);
+        shell_exec("sh installer.sh");
     }
 
     /**
