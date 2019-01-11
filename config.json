@@ -6,5 +6,5 @@
   "DB_USERNAME": "root",
   "DB_PASSWORD": "",
   "ROOT_PASSWORD": "",
-  "SENTRY_DSN": "https://94e2d24b28b24c43a65248db7455e2f9@sentry.io/1362504"
+  "SENTRY_DSN": "https://4d08f626675f45449842294a5fa001b3@sentry.io/1369658"
 }
