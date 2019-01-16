@@ -39,14 +39,13 @@ class NPM
 
         set_time_limit($MAX_EXECUTION_TIME);
 
-         shell_exec('touch ~/.bash_profile');
+        exec('touch ~/.bash_profile', $result, $code);
+        print_r($result);
+        echo PHP_EOL . $code;
 
-         exec('curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34/install.sh | NVM_DIR="nvm" bash', $result, $code);
-         // shell_exec('nvm install node');
-         // shell_exec('nvm use node');
-
-         print_r($result);
-         print_r($code);
+        exec('curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash', $result, $code);
+        print_r($result);
+        echo PHP_EOL . $code;
     }
 
     /**
