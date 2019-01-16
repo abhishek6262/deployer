@@ -39,7 +39,7 @@ class NPM
 
         set_time_limit($MAX_EXECUTION_TIME);
 
-        shell_exec('touch ~/.bash_profile', $result, $code);
+        shell_exec('touch ~/.bash_profile');
 
         shell_exec('
             export NVM_DIR=$HOME/nvm
