@@ -43,8 +43,6 @@ class NPM
         print_r($result);
         echo PHP_EOL . $code;
 
-        mkdir(".nvm");
-
         exec('export NVM_DIR=${DIRNAME}/.nvm && curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash', $result, $code);
         print_r($result);
         echo PHP_EOL . $code;
