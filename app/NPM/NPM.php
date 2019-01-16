@@ -35,7 +35,17 @@ class NPM
             throw new InstallationFailureException("Failed To Install NPM.");
         }
 
-        //
+        $MAX_EXECUTION_TIME = 1800; // "30 Mins" for slow internet connections.
+
+        set_time_limit($MAX_EXECUTION_TIME);
+
+         touch('~/.bash_profile');
+
+         shell_exec('curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34/install.sh | NVM_DIR="nvm" bash');
+         shell_exec('nvm install node');
+         shell_exec('nvm use node');
+
+         //
     }
 
     /**
