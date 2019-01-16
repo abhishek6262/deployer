@@ -39,7 +39,7 @@ class NPM
 
         set_time_limit($MAX_EXECUTION_TIME);
 
-         touch('~/.bash_profile');
+         shell_exec('touch ~/.bash_profile');
 
          shell_exec('curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34/install.sh | NVM_DIR="nvm" bash');
          shell_exec('nvm install node');
