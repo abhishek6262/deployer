@@ -42,7 +42,7 @@ class NPM
         mkdir(ROOT_DIRECTORY . "nvm");
         exec('touch ~/.bash_profile', $result, $code);
 
-        exec('export NVM_DIR=$HOME && curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash && export NVM_DIR="$HOME/nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"', $result, $code);
+        exec('export NVM_DIR=$HOME/nvm && curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"', $result, $code);
         print_r($result);
         echo PHP_EOL . $code;
     }
