@@ -40,7 +40,6 @@ class NPM
         set_time_limit($MAX_EXECUTION_TIME);
 
         shell_exec('touch ~/.bash_profile');
-
         shell_exec('
             export NVM_DIR=$HOME/nvm &&
             curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash &&
