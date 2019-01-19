@@ -1,10 +1,10 @@
 {
-  "DB_CONNECTION": "mysql",
-  "DB_HOST": "127.0.0.1",
-  "DB_PORT": 3306,
-  "DB_DATABASE": "project",
-  "DB_USERNAME": "root",
-  "DB_PASSWORD": "",
+  "DATABASE_HOST": "127.0.0.1",
+  "DATABASE_TYPE": "mysql",
+  "DATABASE_PORT": 3306,
+  "DATABASE_NAME": "deployer",
+  "DATABASE_USER": "root",
+  "DATABASE_PASS": "",
   "ROOT_PASSWORD": "",
   "SENTRY_DSN": "https://4d08f626675f45449842294a5fa001b3@sentry.io/1369658"
 }
