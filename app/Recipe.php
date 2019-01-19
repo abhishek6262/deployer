@@ -34,7 +34,7 @@ class Recipe
             $callable = $instruction;
             $args     = [];
 
-            if (! is_callable($callable) && (is_array($instruction) && count($instruction) > 1)) {
+            if (! is_callable($instruction) && (is_array($instruction) && count($instruction) > 1)) {
                 $callable = $instruction[0];
                 $args	  = $instruction[1];
             }
