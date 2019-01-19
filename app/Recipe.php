@@ -11,26 +11,26 @@ class Recipe
     /**
      * @var array
      */
-    private $instructions;
+    private $recipe;
 
     /**
      * Recipe constructor.
      *
-     * @param array $recipes
+     * @param array $recipe
      */
-    public function __construct(array $recipes)
+    public function __construct(array $recipe)
     {
-        $this->instructions = $recipes;
+        $this->recipe = $recipe;
     }
 
     /**
-     * Deploys the application based on the supplied instructions.
+     * Deploys the application based on the supplied recipe instructions.
      *
      * @return void
      */
     public function bake(): void
     {
-        foreach ($this->instructions as $instruction) {
+        foreach ($this->recipe as $instruction) {
             $callable = $instruction;
             $args     = [];
 
