@@ -42,13 +42,13 @@ class Handler
      * Handles the generated exception and prepares a response based on
      * its type.
      *
-     * @param Exception $exception
+     * @param  $exception
      *
      * @return void
      *
      * @throws \Raven_Exception
      */
-    public static function handle(Exception $exception)
+    public static function handle($exception)
     {
         if ($exception instanceof RenderableExceptionInterface) {
             $exception->render();

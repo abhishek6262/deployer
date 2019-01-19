@@ -29,11 +29,11 @@ class SentryReporterAdapter implements ReporterInterface
     /**
      * Reports the exception passed to the Sentry's server.
      *
-     * @param Exception $exception
+     * @param  $exception
      *
      * @return void
      */
-    public function report(Exception $exception): void
+    public function report($exception): void
     {
         $this->client->captureException($exception);
     }
