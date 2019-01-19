@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace Deployer\Services;
 
 use PDO;
 use Rah\Danpu\Dump;
@@ -9,7 +9,7 @@ use Rah\Danpu\Import;
 
 /**
  * Class Database
- * @package App\Services
+ * @package Deployer\Services
  */
 class Database extends PDO
 {

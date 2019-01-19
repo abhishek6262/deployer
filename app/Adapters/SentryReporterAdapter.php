@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Adapters;
+namespace Deployer\Adapters;
 
-use App\Contracts\ReporterInterface;
-use App\Exceptions\Exception;
+use Deployer\Contracts\ReporterInterface;
+use Deployer\Exceptions\Exception;
 
 /**
  * Class SentryReporterAdapter
- * @package App\Adapters
+ * @package Deployer\Adapters
  */
 class SentryReporterAdapter implements ReporterInterface
 {

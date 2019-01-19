@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Exceptions;
+namespace Deployer\Exceptions;
 
-use App\Adapters\SentryReporterAdapter;
-use App\Contracts\ReporterInterface;
-use App\Exceptions\Contracts\RenderableExceptionInterface;
-use App\Exceptions\Contracts\ReportableExceptionInterface;
+use Deployer\Adapters\SentryReporterAdapter;
+use Deployer\Contracts\ReporterInterface;
+use Deployer\Exceptions\Contracts\RenderableExceptionInterface;
+use Deployer\Exceptions\Contracts\ReportableExceptionInterface;
 
 /**
  * Class Handler
- * @package App\Exceptions
+ * @package Deployer\Exceptions
  */
 class Handler
 {

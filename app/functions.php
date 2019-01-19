@@ -25,7 +25,7 @@ if (!function_exists("composer_exists")) {
      */
     function composer_exists(): bool
     {
-        return \App\Composer\Composer::exists();
+        return \Deployer\Composer\Composer::exists();
     }
 }
 
@@ -35,11 +35,11 @@ if (!function_exists("composer_install")) {
      *
      * @return void
      *
-     * @throws \App\Composer\InstallationFailureException
+     * @throws \Deployer\Composer\InstallationFailureException
      */
     function composer_install(): void
     {
-        \App\Composer\Composer::install();
+        \Deployer\Composer\Composer::install();
     }
 }
 
@@ -54,7 +54,7 @@ if (!function_exists("composer_packages_exists")) {
      */
     function composer_packages_exists(string $directory = __ROOT_DIRECTORY__): bool
     {
-        return \App\Composer\Composer::packagesExists($directory);
+        return \Deployer\Composer\Composer::packagesExists($directory);
     }
 }
 
@@ -69,7 +69,7 @@ if (!function_exists("composer_packages_install")) {
      */
     function composer_packages_install(string $directory = __ROOT_DIRECTORY__): void
     {
-        \App\Composer\Composer::installPackages($directory);
+        \Deployer\Composer\Composer::installPackages($directory);
     }
 }
 
@@ -84,7 +84,7 @@ if (!function_exists("composer_packages_installed")) {
      */
     function composer_packages_installed(string $directory = __ROOT_DIRECTORY__): bool
     {
-        return \App\Composer\Composer::packagesInstalled($directory);
+        return \Deployer\Composer\Composer::packagesInstalled($directory);
     }
 }
 
@@ -127,7 +127,7 @@ if (!function_exists("npm_exists")) {
      */
     function npm_exists(): bool
     {
-        return \App\NPM\NPM::exists();
+        return \Deployer\NPM\NPM::exists();
     }
 }
 
@@ -138,11 +138,11 @@ if (!function_exists("npm_install")) {
      *
      * @return void
      *
-     * @throws \App\NPM\InstallationFailureException
+     * @throws \Deployer\NPM\InstallationFailureException
      */
     function npm_install(): void
     {
-        \App\NPM\NPM::install();
+        \Deployer\NPM\NPM::install();
     }
 }
 
@@ -157,7 +157,7 @@ if (!function_exists("npm_packages_exists")) {
      */
     function npm_packages_exists(string $directory = __ROOT_DIRECTORY__): bool
     {
-        return \App\NPM\NPM::packagesExists($directory);
+        return \Deployer\NPM\NPM::packagesExists($directory);
     }
 }
 
@@ -172,7 +172,7 @@ if (!function_exists("npm_packages_install")) {
      */
     function npm_packages_install(string $directory = __ROOT_DIRECTORY__): void
     {
-        \App\NPM\NPM::installPackages($directory);
+        \Deployer\NPM\NPM::installPackages($directory);
     }
 }
 
@@ -187,7 +187,7 @@ if (!function_exists("npm_packages_installed")) {
      */
     function npm_packages_installed(string $directory = __ROOT_DIRECTORY__): bool
     {
-        return \App\NPM\NPM::packagesInstalled($directory);
+        return \Deployer\NPM\NPM::packagesInstalled($directory);
     }
 }
 

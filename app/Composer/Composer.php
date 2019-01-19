@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Composer;
+namespace Deployer\Composer;
 
 /**
  * Class Composer
- * @package App\Composer
+ * @package Deployer\Composer
  */
 class Composer
 {
@@ -25,7 +25,7 @@ class Composer
      *
      * @return void
      *
-     * @throws \App\Composer\InstallationFailureException
+     * @throws \Deployer\Composer\InstallationFailureException
      */
     public static function install(): void
     {

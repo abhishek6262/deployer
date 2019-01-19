@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Exceptions;
+namespace Deployer\Exceptions;
 
-use App\Contracts\ReporterInterface;
+use Deployer\Contracts\ReporterInterface;
 
 /**
  * Class Exception
- * @package App\Exceptions
+ * @package Deployer\Exceptions
  */
 class Exception extends \Exception
 {

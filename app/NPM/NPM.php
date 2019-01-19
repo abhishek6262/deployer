@@ -1,10 +1,10 @@
 <?php
 
-namespace App\NPM;
+namespace Deployer\NPM;
 
 /**
  * Class NPM
- * @package App\NPM
+ * @package Deployer\NPM
  */
 class NPM
 {
@@ -27,7 +27,7 @@ class NPM
      *
      * @return void
      *
-     * @throws \App\NPM\InstallationFailureException
+     * @throws \Deployer\NPM\InstallationFailureException
      */
     public static function install(): void
     {

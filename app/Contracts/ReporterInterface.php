@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Contracts;
+namespace Deployer\Contracts;
 
-use App\Exceptions\Exception;
+use Deployer\Exceptions\Exception;
 
 /**
  * Interface ReporterInterface
- * @package App\Contracts
+ * @package Deployer\Contracts
  */
 interface ReporterInterface
 {

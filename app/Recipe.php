@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace Deployer;
 
 /**
  * Class Recipe
- * @package App
+ * @package Deployer
  */
 class Recipe
 {

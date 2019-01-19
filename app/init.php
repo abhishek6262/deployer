@@ -13,7 +13,7 @@ require_once __APP_DIRECTORY__ . "/Exceptions/Handler.php";
  * a nice and more detailed manner.
  */
 
-set_exception_handler([\App\Exceptions\Handler::class, 'handle']);
+set_exception_handler([\Deployer\Exceptions\Handler::class, 'handle']);
 
 /**
  * Next, we'll proceed by checking if the Composer exists in the
@@ -65,7 +65,7 @@ if (npm_packages_exists(__SRC_DIRECTORY__) && !npm_packages_installed(__SRC_DIRE
  * the super awesome project of the user.
  */
 
-$recipe = new \App\Recipe(
+$recipe = new \Deployer\Recipe(
     require_once __ROOT_DIRECTORY__ . "/recipe.php"
 );
 

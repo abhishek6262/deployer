@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Composer;
+namespace Deployer\Composer;
 
-use App\Exceptions\Contracts\RenderableExceptionInterface;
-use App\Exceptions\Exception;
+use Deployer\Exceptions\Contracts\RenderableExceptionInterface;
+use Deployer\Exceptions\Exception;
 
 /**
  * Class InstallationFailureException
- * @package App\Composer
+ * @package Deployer\Composer
  */
 class InstallationFailureException extends Exception implements RenderableExceptionInterface
 {

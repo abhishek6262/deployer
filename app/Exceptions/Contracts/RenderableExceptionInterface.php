@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Exceptions\Contracts;
+namespace Deployer\Exceptions\Contracts;
 
 /**
  * Interface RenderableExceptionInterface
- * @package App\Exceptions
+ * @package Deployer\Exceptions
  */
 interface RenderableExceptionInterface
 {

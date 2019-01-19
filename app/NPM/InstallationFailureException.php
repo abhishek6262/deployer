@@ -1,14 +1,14 @@
 <?php
 
-namespace App\NPM;
+namespace Deployer\NPM;
 
-use App\Exceptions\Contracts\RenderableExceptionInterface;
-use App\Exceptions\Contracts\ReportableExceptionInterface;
-use App\Exceptions\Exception;
+use Deployer\Exceptions\Contracts\RenderableExceptionInterface;
+use Deployer\Exceptions\Contracts\ReportableExceptionInterface;
+use Deployer\Exceptions\Exception;
 
 /**
  * Class InstallationFailureException
- * @package App\NPM
+ * @package Deployer\NPM
  */
 class InstallationFailureException extends Exception implements RenderableExceptionInterface, ReportableExceptionInterface
 {
