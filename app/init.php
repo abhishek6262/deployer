@@ -59,3 +59,14 @@ if (npm_packages_exists() && !npm_packages_installed()) {
 if (npm_packages_exists(__SRC_DIRECTORY__) && !npm_packages_installed(__SRC_DIRECTORY__)) {
     npm_packages_install(__SRC_DIRECTORY__);
 }
+
+/**
+ * Shine and rise! Finally, we're all set to bake the recipe and deploy
+ * the super awesome project of the user.
+ */
+
+$recipe = new \App\Recipe(
+    require_once __ROOT_DIRECTORY__ . "/recipe.php"
+);
+
+$recipe->bake();
