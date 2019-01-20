@@ -35,7 +35,7 @@ class Composer
             throw new InstallationFailureException("Failed To Install Composer.");
         }
 
-        shell_exec("sh installer.sh");
+        shell_exec("sh app/Composer/installer.sh");
     }
 
     /**
