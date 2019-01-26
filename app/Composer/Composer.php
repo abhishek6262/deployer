@@ -15,27 +15,19 @@ class Composer
      */
     public static function exists(): bool
     {
-        exec('composer -v', $result, $exit_code);
-
-        return (int)$exit_code === 0 ? true : false;
+        return file_exists(__ROOT_DIRECTORY__ . "/bin/composer") ? true : false;
     }
 
     /**
      * Performs an installation of Composer in the environment.
      *
      * @return void
-     *
-     * @throws \Deployer\Composer\InstallationFailureException
      */
     public static function install(): void
     {
-        if (is_windows()) {
-            require_once "InstallationFailureException.php";
-
-            throw new InstallationFailureException("Failed To Install Composer.");
-        }
-
-        shell_exec("sh app/Composer/installer.sh");
+        shell_exec("php -r \"copy('https://getcomposer.org/installer', 'composer-setup.php');\"");
+        shell_exec("php composer-setup.php --install-dir=bin --filename=composer");
+        shell_exec("php -r \"unlink('composer-setup.php');\"");
     }
 
     /**
@@ -55,7 +47,7 @@ class Composer
         $MAX_EXECUTION_TIME = 1800; // "30 Mins" for slow internet connections.
 
         set_time_limit($MAX_EXECUTION_TIME);
-        shell_exec("composer install");
+        shell_exec("php bin/composer install");
 
         chdir($CURRENT_WORKING_DIRECTORY);
     }
