@@ -110,8 +110,25 @@ if (!function_exists("is_windows")) {
      */
     function is_windows(): bool
     {
-        if (strpos(strtoupper(PHP_OS), "WIN") !== false) {
-            return true;
+        $USER_AGENT = $_SERVER['HTTP_USER_AGENT'];
+
+        $patterns = [
+            'Win16',
+            '(Windows 95)|(Win95)|(Windows_95)',
+            '(Windows 98)|(Win98)',
+            '(Windows NT 5.0)|(Windows 2000)',
+            '(Windows NT 5.1)|(Windows XP)',
+            '(Windows NT 5.2)',
+            '(Windows NT 6.0)|(Windows Vista)',
+            '(Windows NT 6.1)|(Windows 7)',
+            '(Windows NT 4.0)|(WinNT4.0)|(WinNT)|(Windows NT)',
+            'Windows ME',
+        ];
+
+        foreach($patterns as $pattern) {
+            if (preg_match('@' . $pattern . '@', $USER_AGENT)) {
+                return true;
+            }
         }
 
         return false;
