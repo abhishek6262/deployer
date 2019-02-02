@@ -21,10 +21,7 @@ trait ComposerTrait
         // binary installation directory of the project where Composer
         // will execute its commands.
 
-        Composer::setBinPath(__BIN_DIRECTORY__);
-        Composer::setRootPath(__ROOT_DIRECTORY__);
-
-        $this->bind('composer', Composer::class);
+        $this->bind('composer', new \Composer(__PROJECT_DIRECTORY__, __BIN_DIRECTORY__));
 
         // Next, we'll register the composer routes in the application
         // so composer can perform its tasks in case the composer or the
