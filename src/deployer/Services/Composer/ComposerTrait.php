@@ -31,7 +31,6 @@ trait ComposerTrait
         // packages not found and needed to be installed.
 
         $this->registerComposerRoute();
-        $this->validateComposerInstallation();
     }
 
     /**
@@ -43,6 +42,7 @@ trait ComposerTrait
     {
         $routes = $this->resolve('routes');
 
+        /** @noinspection PhpUndefinedMethodInspection */
         $routes->add(
             'GET',
             '/deployer/src/composer/install',
@@ -52,6 +52,7 @@ trait ComposerTrait
             'composer.install'
         );
 
+        /** @noinspection PhpUndefinedMethodInspection */
         $routes->add(
             'POST',
             '/deployer/src/composer/install',
@@ -59,20 +60,5 @@ trait ComposerTrait
                 // 
             }
         );
-    }
-
-    /**
-     * Makes sure that the composer is installed in the system before
-     * proceeding with the application.
-     *
-     * @return void
-     */
-    protected function validateComposerInstallation(): void
-    {
-        $route = $this->resolve('routes')->generate('composer.install');
-
-        if (! Composer::exists() && $_SERVER['REQUEST_URI'] !== $route) {
-            redirect($route);
-        }
     }
 }
