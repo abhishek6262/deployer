@@ -8,23 +8,54 @@ class Composer
     /**
      * @var string
      */
-    protected $binPath = '/bin';
+    protected $binPath;
 
     /**
      * @var string
      */
-    protected $rootPath = '/';
+    protected $rootPath;
 
     /**
      * Composer constructor.
      *
-     * @param  string $rootPath
-     * @param  string $binPath
+     * @param  string $projectRootPath (Absolute Path [__DIR__]) The root directory of the project where composer.json file is stored.
+     * @param  string $binDirPath (Absolute Path [__DIR__]) The directory where the composer should be installed.
      */
-    public function __construct(string $rootPath, string $binPath)
+    public function __construct(string $projectRootPath, string $binDirPath = '')
     {
-        $this->rootPath = $rootPath;
-        $this->binPath  = $binPath;
+        $this->rootPath = rtrim($projectRootPath, '/');
+        $this->binPath  = rtrim($binDirPath, '/');
+
+        if (empty($this->binPath)) {
+            $this->binPath = $this->rootPath . '/bin';
+
+            if (! file_exists($this->binPath)) {
+                mkdir($this->binPath);
+            }
+        }
+    }
+
+    /**
+     * Executes the raw composer command.
+     *
+     * @param string $command
+     *
+     * @return void
+     */
+    public function rawCommand(string $command): void
+    {
+        $CURRENT_WORKING_DIRECTORY = getcwd();
+
+        chdir($this->rootPath);
+
+        $MAX_EXECUTION_TIME = 1800; // "30 Mins" for slow internet connections.
+
+        set_time_limit($MAX_EXECUTION_TIME);
+
+        $escaped_command = escapeshellcmd("php " . $this->binPath . "/composer " . $command);
+        shell_exec($escaped_command);
+
+        chdir($CURRENT_WORKING_DIRECTORY);
     }
 
     /**
@@ -66,17 +97,7 @@ class Composer
      */
     public function installPackages(): void
     {
-        $CURRENT_WORKING_DIRECTORY = getcwd();
-
-        chdir($this->rootPath);
-
-        $MAX_EXECUTION_TIME = 1800; // "30 Mins" for slow internet connections.
-
-        set_time_limit($MAX_EXECUTION_TIME);
-
-        shell_exec("php " . $this->binPath . "/composer install");
-
-        chdir($CURRENT_WORKING_DIRECTORY);
+        $this->rawCommand("install");
     }
 
     /**
