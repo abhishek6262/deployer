@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4bb5db092e74505335baf0319b663232",
+    "content-hash": "9e10d6b4dbe8fdeb843917c6bdc2df31",
     "packages": [
         {
             "name": "sentry/sentry",

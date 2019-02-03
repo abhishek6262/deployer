@@ -10,7 +10,7 @@
     }
   ],
   "require": {
-    "sentry/sentry": "^1.10"
+    "sentry/sentry": "1.10.0"
   },
   "autoload": {
     "psr-4": {
