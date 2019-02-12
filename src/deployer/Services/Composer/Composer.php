@@ -28,10 +28,10 @@ class Composer
 
         if (empty($this->binPath)) {
             $this->binPath = $this->rootPath . '/bin';
+        }
 
-            if (! file_exists($this->binPath)) {
-                mkdir($this->binPath);
-            }
+        if (! file_exists($this->binPath)) {
+            mkdir($this->binPath, 0777, true);
         }
     }
 
