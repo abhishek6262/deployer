@@ -2,7 +2,9 @@
 
 namespace Deployer\Services\Composer;
 
-require_once 'Composer.php';
+require_once __DIR__ . '/Composer/Composer.php';
+
+use abhishek6262\Composer\Composer;
 
 /**
  * Trait ComposerTrait
@@ -21,7 +23,7 @@ trait ComposerTrait
         // binary installation directory of the project where Composer
         // will execute its commands.
 
-        $this->bind('composer', new \Composer(__PROJECT_DIRECTORY__, __BIN_DIRECTORY__));
+        $this->bind('composer', new Composer(__PROJECT_DIRECTORY__, __BIN_DIRECTORY__));
 
         // Next, we'll register the composer routes in the application
         // so composer can perform its tasks in case the composer or the
