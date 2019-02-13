@@ -18,6 +18,7 @@ use Deployer\Recipes\RecipeHandler;
 use Deployer\Routing\RouteCollection;
 use Deployer\Routing\Router;
 use Deployer\Services\Composer\ComposerTrait;
+use Deployer\Services\Node\NodeTrait;
 
 /**
  * Class Deployer
@@ -25,7 +26,7 @@ use Deployer\Services\Composer\ComposerTrait;
  */
 class Deployer implements Container
 {
-    use ComposerTrait, ContainerTrait;
+    use ComposerTrait, ContainerTrait, NodeTrait;
 
     /**
      * @var Deployer|null
@@ -68,6 +69,8 @@ class Deployer implements Container
         $this->bind('project', $project);
 
         $this->bindComposer();
+        $this->bindNPM();
+
         $this->bind('recipeHandler', new RecipeHandler());
     }
 
