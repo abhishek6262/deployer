@@ -10,8 +10,8 @@
     }
   ],
   "require": {
-    "sentry/sentry": "^1.10",
-    "abhishek6262/nodephp": "^0.2.0"
+    "sentry/sentry": "1.10.0",
+    "abhishek6262/nodephp": "0.2"
   },
   "autoload": {
     "psr-4": {
