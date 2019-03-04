@@ -90,6 +90,7 @@ class RecipeCollection
         array_push($this->recipes, $recipe);
 
         \uasort($this->recipes, [$this, 'compareRecipeOrder']);
+        $this->recipes = array_values($this->recipes);
     }
 
     /**
