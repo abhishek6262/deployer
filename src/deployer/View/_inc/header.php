@@ -13,5 +13,3 @@
 <body class="bg-indigo-lightest">
     <div id="main" class="site-container">
         <div class="container mx-auto px-4">
-            <div class="flex items-center h-screen">
-                <div class="mx-auto">
