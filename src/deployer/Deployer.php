@@ -71,7 +71,7 @@ class Deployer implements Container
         $this->routes = new RouteCollection();
         $this->routes->registerDefaults();
 
-        $this->recipes = new RecipeCollection();
+        $this->recipes = new RecipeCollection($this->routes);
 
         new ComposerService($this, $this->recipes);
     }

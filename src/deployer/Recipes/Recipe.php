@@ -2,6 +2,8 @@
 
 namespace Deployer\Recipes;
 
+use Deployer\Routing\RouteCollection;
+
 /**
  * Class Recipe
  * @package Deployer\Recipes

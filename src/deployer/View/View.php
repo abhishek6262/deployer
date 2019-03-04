@@ -37,11 +37,10 @@ class View
      * Generates the view for the supplied response.
      *
      * @param  RecipeCollection $collection
-     * @param  RouteCollection $collection
      * 
      * @return void
      */
-    public function generate(RecipeCollection $collection, RouteCollection $routes): void
+    public function generate(RecipeCollection $collection): void
     {
         require_once '_inc/header.php';
 
