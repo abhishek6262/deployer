@@ -1,6 +1,6 @@
 <?php
 
-namespace Deployer\Services\Composer;
+namespace Deployer\Services\Composer\Recipes;
 
 use Deployer\Config;
 use Deployer\Container\Container;
@@ -10,10 +10,10 @@ use Deployer\Routing\RouteCollection;
 use Deployer\View\View;
 
 /**
- * Class ComposerRecipe
- * @package Deployer\Services\Composer
+ * Class SetupComposerRecipe
+ * @package Deployer\Services\Composer\Recipes
  */
-class ComposerRecipe extends Recipe
+class SetupComposerRecipe extends Recipe
 {
     /**
      * The order on which the recipe will be executed.
@@ -35,7 +35,12 @@ class ComposerRecipe extends Recipe
                 '/composer',
                 function (Container $container, Config $config, RecipeCollection $recipes, RouteCollection $routes)
                 {
-                    return new View('Hello from composer.');
+                    $response =
+<<<OUTPUT
+                        <h2 class="font-semibold" style="font-family: 'Open Sans';">Setup Composer</h2>
+OUTPUT;
+
+                    return new View($response);
                 },
                 'composer'
             ],
