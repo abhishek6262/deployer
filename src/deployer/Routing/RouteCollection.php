@@ -37,7 +37,7 @@ class RouteCollection
      *
      * @throws \Exception
      */
-    public function add(string $method, string $route, $target, string $name = null): void
+    public function add(string $method, string $route, $target, string $name): void
     {
         $this->router->map(
             $method,
