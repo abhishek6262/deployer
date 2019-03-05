@@ -2,6 +2,7 @@
 
 namespace Deployer\Services\Composer;
 
+use abhishek6262\Composer\Composer;
 use Deployer\Config;
 use Deployer\Container\Container;
 use Deployer\Recipes\Recipe;
@@ -75,11 +76,13 @@ OUTPUT;
                 'post',
                 '/composer',
                 function (Container $container, Config $config, RecipeCollection $recipes, RouteCollection $routes) {
-                    $composer = $container->resolve('composer');
+                    $composer = new Composer(__ROOT_DIRECTORY__, __BIN_DIRECTORY__);
 
                     if (! $composer->exists()) {
                         $composer->install();
                     }
+
+                    $composer->installPackages();
 
                     $url = $routes->generate(
                                 $routes->nextViewRoute()[3]
