@@ -7,7 +7,8 @@
     <title>Deployer</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans:400,600,600i,700"> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,500i,600,600i,700"> 
+    <link rel="stylesheet" href="<?php echo base_uri() . '/deployer/View/assets/css/style.css'; ?>"> 
 </head>
 
 <body class="bg-indigo-lightest">
