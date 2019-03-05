@@ -3,7 +3,11 @@
 namespace Deployer\Recipes;
 
 require_once 'Recipe.php';
+require_once 'defaults/InstallPackagesRecipe.php';
+require_once 'defaults/FinishRecipe.php';
 
+use Deployer\Recipes\Defaults\InstallPackagesRecipe;
+use Deployer\Recipes\Defaults\FinishRecipe;
 use Deployer\Routing\RouteCollection;
 
 /**
@@ -118,6 +122,17 @@ class RecipeCollection
     public function recipes(): array
     {
         return $this->recipes;
+    }
+
+    /**
+     * Register the default recipes into the application.
+     * 
+     * @return void
+     */
+    public function registerDefaults(): void
+    {
+        $this->registerRecipe(new InstallPackagesRecipe());
+        $this->registerRecipe(new FinishRecipe());
     }
 
     /**

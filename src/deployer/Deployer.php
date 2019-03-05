@@ -12,6 +12,7 @@ require_once __DEPLOYER_DIRECTORY__ . '/Recipes/RecipeCollection.php';
 require_once __DEPLOYER_DIRECTORY__ . '/Routing/RouteCollection.php';
 require_once __DEPLOYER_DIRECTORY__ . '/Routing/Router.php';
 require_once __DEPLOYER_DIRECTORY__ . '/Services/Composer/ComposerService.php';
+require_once __DEPLOYER_DIRECTORY__ . '/Services/Node/NodeService.php';
 require_once __DEPLOYER_DIRECTORY__ . '/View/View.php';
 
 use Deployer\Container\Container;
@@ -20,6 +21,7 @@ use Deployer\Recipes\RecipeCollection;
 use Deployer\Routing\RouteCollection;
 use Deployer\Routing\Router;
 use Deployer\Services\Composer\ComposerService;
+use Deployer\Services\Node\NodeService;
 
 /**
  * Class Deployer
@@ -72,8 +74,10 @@ class Deployer implements Container
         $this->routes->registerDefaults();
 
         $this->recipes = new RecipeCollection($this->routes);
+        $this->recipes->registerDefaults();
 
         new ComposerService($this, $this->recipes);
+        new NodeService($this, $this->recipes);
     }
 
     /**
