@@ -2,13 +2,13 @@
 
 namespace Deployer\Services\Composer;
 
-require_once 'recipes/SetupComposerRecipe.php';
+require_once 'SetupComposerRecipe.php';
 require_once 'Composer/Composer.php';
 
 use abhishek6262\Composer\Composer;
 use Deployer\Container\Container;
 use Deployer\Recipes\RecipeCollection;
-use Deployer\Services\Composer\Recipes\SetupComposerRecipe;
+use Deployer\Services\Composer\SetupComposerRecipe;
 
 /**
  * Class ComposerService

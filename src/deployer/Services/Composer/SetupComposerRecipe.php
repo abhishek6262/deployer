@@ -1,6 +1,6 @@
 <?php
 
-namespace Deployer\Services\Composer\Recipes;
+namespace Deployer\Services\Composer;
 
 use Deployer\Config;
 use Deployer\Container\Container;
@@ -11,7 +11,7 @@ use Deployer\View\View;
 
 /**
  * Class SetupComposerRecipe
- * @package Deployer\Services\Composer\Recipes
+ * @package Deployer\Services\Composer
  */
 class SetupComposerRecipe extends Recipe
 {
