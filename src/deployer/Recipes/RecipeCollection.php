@@ -3,6 +3,12 @@
 namespace Deployer\Recipes;
 
 require_once 'Recipe.php';
+require_once 'defaults/InstallPackagesRecipe.php';
+require_once 'defaults/FinishRecipe.php';
+
+use Deployer\Recipes\Defaults\InstallPackagesRecipe;
+use Deployer\Recipes\Defaults\FinishRecipe;
+use Deployer\Routing\RouteCollection;
 
 /**
  * Class RecipeCollection
@@ -16,10 +22,18 @@ class RecipeCollection
     public $recipes = [];
 
     /**
-     * RecipeHandler constructor.
+     * @var RouteCollection
      */
-    public function __construct()
+    protected $routes;
+
+    /**
+     * RecipeHandler constructor.
+     * 
+     * @param  RouteCollection $routes
+     */
+    public function __construct(RouteCollection $routes)
     {
+        $this->routes = $routes;
         $this->registerRecipes(__RECIPES_DIRECTORY__);
     }
 
@@ -41,6 +55,66 @@ class RecipeCollection
     }
 
     /**
+     * Determines whether the recipe is currently working or visible on
+     * the screen.
+     * 
+     * @param  Recipe $recipe
+     * 
+     * @return bool
+     */
+    public function isRecipeActive(Recipe $recipe): bool
+    {
+        $current = $this->routes->router->match();
+
+        foreach ($recipe->routes() as $route) {
+            if ($route[0] === 'GET' && $current['name'] === $route[3]) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Determines whether the recipe has completed its work.
+     * 
+     * @param  Recipe $recipe
+     * 
+     * @return bool
+     */
+    public function isRecipeCompleted(Recipe $recipe): bool
+    {
+        // Fetch index of active recipe.
+        $active_recipe_index = -1;
+        $current = $this->routes->router->match();
+
+        foreach ($this->recipes as $key => $_recipe) {
+            if ($active_recipe_index !== -1) {
+                break;
+            }
+
+            foreach ($_recipe->routes() as $route) {
+                if ($route[0] === 'GET' && $current['name'] === $route[3]) {
+                    $active_recipe_index = $key;
+                    break;
+                }
+            }
+        }
+
+        // Fetch index of supplied recipe.
+        $recipe_index = 0;
+
+        foreach ($this->recipes as $key => $_recipe) {
+            if (get_class($recipe) === get_class($_recipe)) {
+                $recipe_index = $key;
+                break;
+            }
+        }
+
+        return $active_recipe_index > $recipe_index;
+    }
+
+    /**
      * Returns the list of recipes available in the application.
      * 
      * @return array
@@ -48,6 +122,17 @@ class RecipeCollection
     public function recipes(): array
     {
         return $this->recipes;
+    }
+
+    /**
+     * Register the default recipes into the application.
+     * 
+     * @return void
+     */
+    public function registerDefaults(): void
+    {
+        $this->registerRecipe(new InstallPackagesRecipe());
+        $this->registerRecipe(new FinishRecipe());
     }
 
     /**
@@ -90,6 +175,7 @@ class RecipeCollection
         array_push($this->recipes, $recipe);
 
         \uasort($this->recipes, [$this, 'compareRecipeOrder']);
+        $this->recipes = array_values($this->recipes);
     }
 
     /**

@@ -42,7 +42,7 @@ class Router extends \AltoRouter
             $response = call_user_func_array($route['target'], $properties);
 
             echo $response instanceof View
-                    ? $response->generate()
+                    ? $response->generate($recipes)
                     : $response;
         } else {
             // No route was matched

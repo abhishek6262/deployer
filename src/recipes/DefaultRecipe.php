@@ -22,15 +22,7 @@ class DefaultRecipe extends Recipe
     public function routes(): array
     {
         return [
-            [
-                'GET',
-                '/',
-                function ()
-                {
-                    echo 'Hello world.';
-                },
-                'default'
-            ],
+            //
         ];
     }
 }

@@ -2,12 +2,13 @@
 
 namespace Deployer\Services\Composer;
 
-require_once 'ComposerRecipe.php';
+require_once 'SetupComposerRecipe.php';
 require_once 'Composer/Composer.php';
 
 use abhishek6262\Composer\Composer;
 use Deployer\Container\Container;
 use Deployer\Recipes\RecipeCollection;
+use Deployer\Services\Composer\SetupComposerRecipe;
 
 /**
  * Class ComposerService
@@ -24,6 +25,6 @@ class ComposerService
     public function __construct(Container $container, RecipeCollection $recipes)
     {
         $container->bind('composer', new Composer(__PROJECT_DIRECTORY__, __BIN_DIRECTORY__));
-        $recipes->registerRecipe(new ComposerRecipe());
+        $recipes->registerRecipe(new SetupComposerRecipe());
     }
 }
