@@ -10,7 +10,7 @@
     }
   ],
   "require": {
-    "abhishek6262/nodephp": "^0.2.0"
+    "abhishek6262/nodephp": "0.2"
   },
   "autoload": {
     "psr-4": {

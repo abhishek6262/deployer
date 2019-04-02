@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "15d2f6bca87e32e9663bb020e4db66ee",
+    "content-hash": "49b51dcb9974023e287586e6887d8eb9",
     "packages": [
         {
             "name": "abhishek6262/nodephp",
