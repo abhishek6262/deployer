@@ -1,0 +1,20 @@
+{
+  "name": "abhishek6262/deployer",
+  "description": "This application is responsible for performing the deployment of the PHP applications with ease, as it brings all the command line tasks to the GUI-level.",
+  "type": "project",
+  "license": "Apache",
+  "authors": [
+    {
+      "name": "Abhishek Prakash",
+      "email": "prakashabhishek6262@gmail.com"
+    }
+  ],
+  "require": {
+    "abhishek6262/nodephp": "0.2.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Deployer\\": "deployer"
+    }
+  }
+}
