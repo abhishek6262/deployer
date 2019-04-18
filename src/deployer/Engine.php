@@ -43,7 +43,7 @@ final class Engine
     /**
      * @var string
      */
-    const version = 'alpha-0.1.0';
+    const version = 'alpha-0.1.1';
 
     /**
      * Engine constructor.
