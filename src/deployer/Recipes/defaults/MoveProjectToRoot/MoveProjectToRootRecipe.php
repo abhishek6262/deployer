@@ -70,6 +70,10 @@ class MoveProjectToRootRecipe extends Recipe
                 'POST',
                 '/finish',
                 function () {
+                    $MAX_EXECUTION_TIME = 1800; // "30 Mins" for slow internet connections.
+
+                    set_time_limit($MAX_EXECUTION_TIME);
+
                     $this->backupDeployerFiles();
                     $this->moveProjectFilesToRoot();
 
