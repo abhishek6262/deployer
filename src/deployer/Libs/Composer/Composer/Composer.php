@@ -2,6 +2,7 @@
 
 namespace abhishek6262\Composer;
 
+require_once __DIR__ . "/functions.php";
 require_once __DIR__ . "/System/Environment.php";
 require_once __DIR__ . "/System/Response.php";
 
@@ -47,7 +48,7 @@ class Composer
 
         set_time_limit($MAX_EXECUTION_TIME);
 
-        exec( escapeshellcmd("php " . $this->environment->binPath . "/composer " . $command) . " 2>&1", $message, $code );
+        exec( escapeshellcmd($this->environment->getPHPPath() . " " . $this->environment->binPath . "/composer " . $command) . " 2>&1", $message, $code );
 
         chdir($CURRENT_WORKING_DIRECTORY);
 

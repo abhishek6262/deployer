@@ -49,8 +49,27 @@ class Environment
 
         set_time_limit($MAX_EXECUTION_TIME);
 
-        shell_exec("php -r \"copy('https://getcomposer.org/installer', 'composer-setup.php');\"");
-        shell_exec("php composer-setup.php --install-dir=" . $this->binPath . " --filename=composer");
-        shell_exec("php -r \"unlink('composer-setup.php');\"");
+        $PATH = $this->getPHPPath();
+
+        shell_exec($PATH . " -r \"copy('https://getcomposer.org/installer', 'composer-setup.php');\"");
+        shell_exec($PATH . " composer-setup.php --install-dir=" . $this->binPath . " --filename=composer");
+        shell_exec($PATH . " -r \"unlink('composer-setup.php');\"");
+    }
+
+    /**
+     * Returns the path of PHP set in the environment.
+     *
+     * @return string
+     */
+    public function getPHPPath(): string
+    {
+        $PATH = array_values(array_filter(explode(";", getenv("PATH")), function ($value) {
+            return endsWith($value, 'php') || endsWith($value, 'php\\');
+        }));
+
+        $PATH = rtrim($PATH[0], '\\');
+        $PATH .= '\\php';
+
+        return addslashes($PATH);
     }
 }
