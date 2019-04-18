@@ -73,7 +73,7 @@ class InstallProjectPackagesRecipe extends Recipe
 
                     $query = [];
 
-                    if (!$composer->packagesExists()) {
+                    if ($composer->packagesExists()) {
                         $c_response = $composer->installPackages();
 
                         if ((int)$c_response->statusCode() !== 0) {
@@ -81,7 +81,7 @@ class InstallProjectPackagesRecipe extends Recipe
                         }
                     }
 
-                    if (!$npm->packagesExists()) {
+                    if ($npm->packagesExists()) {
                         $n_response = $npm->installPackages();
 
                         if ((int)$n_response->statusCode() !== 0) {
