@@ -4,6 +4,12 @@
     Below you should enter your database connection details. If you're not sure about these contact your host.
 </p>
 
+<?php if (! empty($error)) : ?>
+<div class="bg-red-lightest border-l-4 border-red text-red-dark p-4 mb-8" role="alert">
+    <p><?php echo $error; ?></p>
+</div>
+<?php endif; ?>
+
 <form class="w-full" action="<?php echo $routes->generate('database.setup'); ?>" method="post">
     <div class="flex flex-wrap -mx-3 mb-6">
         <div class="w-full px-3">

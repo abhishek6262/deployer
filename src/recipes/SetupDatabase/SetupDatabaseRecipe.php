@@ -28,9 +28,20 @@ class SetupDatabaseRecipe extends Recipe
                 'GET',
                 'database',
                 function (RouteCollection $routes) {
+                    $error = '';
+
+                    if (isset($_GET['fields']) && $_GET['fields'] === 'empty') {
+                        $error = 'All fields are required to make a database connection.';
+                    } elseif (isset($_GET['connection']) && $_GET['connection'] === 'failed') {
+                        $error = 'Invalid details. Failed to connect to the database.';
+                    } elseif (isset($_GET['import']) && $_GET['import'] === 'failed') {
+                        $error = 'Failed to import the database.';
+                    } 
+
                     $response = new \Deployer\Response\Template(
                         __DIR__ . '/SetupDatabaseForm.php',
                         [
+                            'error'  => $error,
                             'routes' => $routes
                         ]
                     );
