@@ -51,7 +51,7 @@ class Environment
 
         $PATH = $this->getPHPPath();
 
-        shell_exec($PATH . " -r \"copy('https://getcomposer.org/installer', 'composer-setup.php');\"");
+        shell_exec($PATH . " -r \"copy('http://getcomposer.org/installer', 'composer-setup.php');\"");
         shell_exec($PATH . " composer-setup.php --install-dir=" . $this->binPath . " --filename=composer");
         shell_exec($PATH . " -r \"unlink('composer-setup.php');\"");
     }
