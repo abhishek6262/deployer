@@ -98,7 +98,6 @@ class RecipeNameRecipe extends Recipe
 
 ## Known Bugs
 
-- Composer does not install in windows.
 - Node.js does not install in windows.
 
 ## Credits
